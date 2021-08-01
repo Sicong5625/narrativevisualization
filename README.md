@@ -1,7 +1,5 @@
 # World Population, Birth rate, and the Aging Population    
-    
-    <!DOCTYPE html>
-<html>
+
 <script src="https://d3js.org/d3.v5.min.js"></script>
 
 <head>
@@ -140,4 +138,3 @@
     </p>
 </body>
 
-</html>

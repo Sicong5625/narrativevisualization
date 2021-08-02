@@ -136,22 +136,22 @@
                 })
             }
 
-            // This function is called by the buttons on top of the plot
+            
             function change(setting) {
                 if (setting === "AverageHighwayMPG") {
                     scene1.selectAll("rect")
                         .transition()
                         .duration(2000)
                         .attr("fill", "#5E4FA2")
-                        .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-                        .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+                        .attr("y", function (d, i) { return y(d.AverageHighwayMPG) + 10; })
+                        .attr("height", function (d, i) { return height - y(d.AverageHighwayMPG); })
                 } else {
                     scene1.selectAll("rect")
                         .transition()
                         .duration(2000)
                         .attr("fill", "#66C2A5")
-                        .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
-                        .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
+                        .attr("y", function (d, i) { return y(d.AverageCityMPG) + 10; })
+                        .attr("height", function (d, i) { return height - y(d.AverageCityMPG); })
                 }
             }
             

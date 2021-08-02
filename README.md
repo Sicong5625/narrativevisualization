@@ -2,7 +2,6 @@
 <html>
     <script src="https://d3js.org/d3.v5.min.js"></script>   
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css">
 
     <body>
         <div>
@@ -43,24 +42,25 @@
      
             const data =await d3.csv("https://flunky.github.io/cars2017.csv");
 
-            var svg = d3.select("plot1").append("svg").attr("width", width).attr("height", height)
-                .append("g").attr("transform", "translate("+ spacing/2 +", "+ spacing/2 +")");
             var y=d3.scaleLinear().domain([0, 120]).range([height-spacing,0]);
             var x=d3.scaleLinear().domain([10, 20, 30, 40, 50]).range([1,width-spacing]);
-            svg.append("g").call(d3.axisLeft(y));
-            svg.append("g").attr("transform","translate(0,"+(height-spacing) +")").call(d3.axisBottom(x));
-            svg.attr("class", "center-screen");
+            scene1.append("g").append("g").call(d3.axisLeft(y));
+            scene1.append("g").attr("transform","translate(0,"+(height-spacing) +")").call(d3.axisBottom(x));
+            scene1.attr("class", "center-screen");
+            scene1.append('text')
+                .attr('x', -500)
+                .attr('y', 15)
+                .attr('transform', 'rotate(-90)')
+                .attr('text-anchor', 'middle')
+                .text('Mileage')
 
-            const line = d3.line()
-                .x(d => x(+d.time))
-                .y(d => y(+d.value))
-            svg.selectAll("myLines")
-                .data(dataReady)
-                .join("path")
-                    .attr("d", d => line(d.values))
-                    .attr("stroke", d => myColor(d.name))
-                    .style("stroke-width", 4)
-                    .style("fill", "none")
+            scene1.append('text')
+                .attr('x', 500)
+                .attr('y', 1050)
+                .attr('text-anchor', 'middle')
+                .text('Car Brand')
+
+            
             
         </script>
     </body>

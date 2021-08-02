@@ -3,7 +3,7 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>   
     
     <body>
-        
+        <div style="text-align:center;"></div>
         <script>
             var width = 600, height = 500, spacing=120;
             var lowerBound = 1960
@@ -15,7 +15,7 @@
             });
 
 
-            var svg = d3.select("body").append("svg").attr("width", width).attr("height", height)
+            var svg = d3.select("div").append("svg").attr("width", width).attr("height", height)
                 .append("g").attr("transform", "translate("+ spacing/2 +", "+ spacing/2 +")");
             var y=d3.scaleLinear().domain([0,50]).range([height-spacing,0]);
             var x=d3.scaleLinear().domain([1960,2020]).range([0,width-spacing]);

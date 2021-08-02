@@ -16,10 +16,11 @@
                     console.log(data);
                 }
             });
+            const names = age.Country_Name
             var seqNumbers = range(lowerBound, 2020);
-            var dataReady = age.map( function(grpName) { 
+            var dataReady = names.map( function(grpName) { 
                 return {
-                    name: age.Country_Name,
+                    name: grpName,
                     values: age.map(function(d,i) {
                     return {time: seqNumbers[i], value: +d[grpName]};
                     })
@@ -31,6 +32,7 @@
                     console.log(data);
                 }
             });
+           
             const myColor = d3.scaleOrdinal()
                 .domain(age.Country_Name)
                 .range(d3.schemeSet2);
@@ -42,7 +44,7 @@
             svg.append("g").call(d3.axisLeft(y));
             svg.append("g").attr("transform","translate(0,"+(height-spacing) +")").call(d3.axisBottom(x));
             svg.attr("class", "center-screen");
-            
+
             const line = d3.line()
                 .x(d => x(+d.time))
                 .y(d => y(+d.value))

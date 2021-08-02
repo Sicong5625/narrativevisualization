@@ -30,9 +30,9 @@
             <button id="city" onclick="change('AverageCityMPG')">Average City MPG</button>
         </div>
         <svg id="scene1" width=1000 height=1200>
-            <text x="900" y="700">Good gas mileage</text>
+            <text x="900" y="700"></text>
 
-            <line x1="0" y1="700" x2="900" y2="700" stroke="black" stroke-dasharray="4" />
+            <line x1="0" y1="700" x2="900" y2="700" stroke="grey" stroke-dasharray="4" />
         </svg>
 
 
@@ -48,11 +48,19 @@
             var scene2 = d3.select('#scene2')
             var scene3 = d3.select('#scene3')
             var width = 800, height = 800, spacing=120;
-     
+            var margin = { top: 10, right: 100, bottom: 50, left: 50 },
             const data =d3.csv("narrativevisualization/cars2017.csv");
 
             var y=d3.scaleLinear().domain([0, 120]).range([height-spacing,0]);
             var x=d3.scaleLinear().domain([10, 20, 30, 40, 50]).range([1,width-spacing]);
+
+            var xAxis = d3.axisBottom()
+                .scale(x)
+
+            var yAxis = d3.axisLeft()
+                .scale(y)
+
+            
             scene1.append("g").append("g").call(d3.axisLeft(y));
             scene1.append("g").attr("transform","translate(0,"+(height-spacing) +")").call(d3.axisBottom(x));
             scene1.attr("class", "center-screen");
@@ -95,6 +103,9 @@
                 .style("border-radius", "5px")
                 .style("padding", "15px")
                 .style("color", "white")
+
+
+
             async function load1() {
                     var makeScale = d3.scaleBand()
                         .range([0, width])
@@ -116,10 +127,10 @@
                         .data(data_given)
                         .enter()
                         .append("rect")
-                        .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
-                        .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+                        .attr("x", function (d, i) { return margin.left + makeScale(d.Make); })
+                        .attr("y", function (d, i) { return y(d.AverageHighwayMPG) + 10; })
                         .attr("width", makeScale.bandwidth() - 10)
-                        .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+                        .attr("height", function (d, i) { return height - y(d.AverageHighwayMPG); })
                         .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
                             bar_tooltip.transition()
                                 .duration(200)

@@ -19,7 +19,7 @@
             var y=d3.scaleLinear().domain([0,50]).range([height-spacing,0]);
             var x=d3.scaleLinear().domain([1960,2020]).range([0,width-spacing]);
             svg.append("g").call(d3.axisLeft(y));
-            svg.append("g").call(d3.axisBottom(x));
+            svg.append("g").attr("transform","translate(0,"+(height-spacing) +")").call(d3.axisBottom(x));
             svg.attr("class", "center-screen")
         </script>
     </body>

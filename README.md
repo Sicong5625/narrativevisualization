@@ -40,7 +40,7 @@
             var scene3 = d3.select('#scene3')
             var width = 800, height = 800, spacing=120;
      
-            const data =await d3.csv("https://flunky.github.io/cars2017.csv");
+            const data =await d3.csv("narrativevisualization/cars2017.csv");
 
             var y=d3.scaleLinear().domain([0, 120]).range([height-spacing,0]);
             var x=d3.scaleLinear().domain([10, 20, 30, 40, 50]).range([1,width-spacing]);

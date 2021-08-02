@@ -1,6 +1,5 @@
 var scene1 = d3.select('#scene1')
 var scene2 = d3.select('#scene2')
-var scene3 = d3.select('#scene3')
 var width = 950, height = 950, spacing=120;
 var margin = { top: 10, right: 100, bottom: 50, left: 50 },
     width = 1000 - margin.left - margin.right,

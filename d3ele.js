@@ -20,7 +20,7 @@ var city_mpgs = ["25", "24", "24", "23", "23",
 
 
 
-var y=d3.scaleLinear().domain([0, 120]).range([height-spacing,0]);
+var y=d3.scaleLinear().domain([0, 30]).range([height-spacing,0]);
 var x=d3.scaleLinear().domain([10, 20, 30, 40]).range([1,width-spacing]);
 
 var xAxis = d3.axisBottom()
@@ -63,47 +63,47 @@ var bar_tooltip = d3.select("body")
 
 
 
-        async function load1() {
-            d3.csv("/narrativevisualization/cars2017.csv").then(function (d) {
-                var makeScale = d3.scaleBand()
-                    .range([0, width])
-                    .domain(data_given.map(function (d) { return d.Make; }))
+    async function load1() {
+        d3.csv("/narrativevisualization/cars2017.csv").then(function (d) {
+            var makeScale = d3.scaleBand()
+                .range([0, width])
+                .domain(data_given.map(function (d) { return d.Make }))
 
-                var makeAxis = d3.axisBottom()
-                    .scale(makeScale)
-                    .ticks(5);
+            var makeAxis = d3.axisBottom()
+                .scale(makeScale)
+                .ticks(5);
 
-                scene1.append("g")
-                    .attr("transform", "translate(50,950)")
-                    .attr("class", "axis")
-                    .call(makeAxis)
-                    .selectAll("text")
-                    .attr("transform", "translate(-10,0)rotate(-30)")
-                    .style("text-anchor", "end");
+            scene1.append("g")
+                .attr("transform", "translate(50,950)")
+                .attr("class", "axis")
+                .call(makeAxis)
+                .selectAll("text")
+                .attr("transform", "translate(-10,0)rotate(-30)")
+                .style("text-anchor", "end");
 
-                scene1.selectAll("mybar")
-                    .data(data)
-                    .enter()
-                    .append("rect")
-                    .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
-                    .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
-                    .attr("width", makeScale.bandwidth() - 10)
-                    .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
-                    .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
-                        bar_tooltip.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        bar_tooltip.html(makes[i])
-                            .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY - 28) + "px");
-                    })
-                    .on("mouseout", function (d) {
-                        bar_tooltip.transition()
-                            .duration(500)
-                            .style("opacity", 0);
-                    });
-            })
-        }
+            scene1.selectAll("mybar")
+                .data(d)
+                .enter()
+                .append("rect")
+                .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
+                .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+                .attr("width", makeScale.bandwidth() - 10)
+                .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+                .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
+                    bar_tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    bar_tooltip.html(makes[i])
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px");
+                })
+                .on("mouseout", function (d) {
+                    bar_tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });
+        })
+    }
 
 
 function change(setting) {
@@ -200,7 +200,7 @@ async function load2() {
             .data(d)
             .enter()
             .append("circle")
-            .attr("class", function (d) { return "datapt " + "a" + d.EngineCylinders })
+            // .attr("class", function (d) { return "datapt " + "a" + d.EngineCylinders })
             .attr("cx", function (d) { return d.AverageHighwayMPG * 20 })
             .attr("cy", function (d) { return 300 })
             .attr("r", "7")

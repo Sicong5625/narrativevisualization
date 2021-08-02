@@ -1,4 +1,5 @@
 # Fuel Efficiency
+<!DOCTYPE html>
 <html>
     <script src="https://d3js.org/d3.v5.min.js"></script>   
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
@@ -35,10 +36,11 @@
             <line x1="0" y1="700" x2="900" y2="700" stroke="grey" stroke-dasharray="4" />
         </svg>
 
+        <hr>
         <a href="#intro" class="back">Back to Top</a>
         <a href="#two" class="back">Previous</a>
-
-        <h3 id="three">Choose you car based on the number of Engin Cyliners.</h3>
+        <hr>
+        <h3 id="two">Choose you car based on the number of Engin Cyliners.</h3>
         <p>This visualization shows us the relationship between all three fields: fuel type, engine cylinder, and average MPG. The size of the 
             plotted point indicates the mileage, while the density represents the relative value of the cars that fall into that configuration of fuel type and
             cylinder number.

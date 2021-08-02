@@ -23,8 +23,8 @@
 
         var y=d3.scaleLinear().domain([0,50]).range([height-spacing,0]);
         var x=d3.scaleLinear().domain([1960,2020]).range([0,width-spacing]);
-        svg.append("g").").attr("transform","translate("+spacing+","+spacing+")").call(d3.axisLeft(y));
-        svg.append("g").attr("transform","translate("+spacing+","+(200+spacing) +")")..call(d3.axisBottom(x));
+        svg.append("g").attr("transform","translate("+spacing+","+spacing+")").call(d3.axisLeft(y));
+        svg.append("g").attr("transform","translate("+spacing+","+(200+spacing) +")").call(d3.axisBottom(x));
         
     </script>
 </body>

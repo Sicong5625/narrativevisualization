@@ -96,7 +96,7 @@
         <a href="#top" class="back">Back to top</a>
         <a href="#two" class="back">Previous</a>
         <hr>
-        <!-- Script -->
+        
         <script src="d3ele.js"></script>
 
     </body>

@@ -5,7 +5,7 @@
 </svg>
 <body>
     <script>
-        var width = 600, height = 500, spacing=120;
+        var width = 600, height = 500, spacing=100;
         var lowerBound = 1960
         
         const age = d3.csv("/data/age_dep_old.csv", function(data) {

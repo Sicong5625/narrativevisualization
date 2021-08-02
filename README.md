@@ -1,10 +1,7 @@
-
+# the Aging Population
 <html>
     <script src="https://d3js.org/d3.v5.min.js"></script>   
-    <head>
-        <title>Fuel Efficiency</title>
-        <link rel="stylesheet" type="text/css" href="index.css">
-    </head>
+    
     <body>
         
         <script>

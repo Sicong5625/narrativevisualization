@@ -25,6 +25,6 @@
         var x=d3.scaleLinear().domain([1960,2020]).range([0,width-spacing]);
         svg.append("g").call(d3.axisLeft(y));
         svg.append("g").call(d3.axisBottom(x));
-        svg.attr("class", "center-screen")
+        svg.attr("class", "center-screen");
     </script>
 </body>

@@ -66,7 +66,7 @@ var scene1 = d3.select('#scene1')
 
 
         async function load1() {
-            d3.csv("narrativevisualization/cars2017.csv").then(function (d) {
+            d3.csv("/narrativevisualization/cars2017.csv").then(function (d) {
                 var makeScale = d3.scaleBand()
                     .range([0, width])
                     .domain(data_given.map(function (d) { return d.Make; }))
@@ -196,7 +196,7 @@ var noHighlight = function (d) {
 }
 
 async function load2() {
-    d3.csv("narrativevisualization/cars2017.csv").then(function (d) {
+    d3.csv("/narrativevisualization/cars2017.csv").then(function (d) {
         scene2.selectAll("p")
             .append("g")
             .data(d)

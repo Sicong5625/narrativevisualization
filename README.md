@@ -5,7 +5,7 @@
     <body>
         <div style="text-align:center;"></div>
         <script>
-            var width = 600, height = 500, spacing=120;
+            var width = 1200, height = 500, spacing=120;
             var lowerBound = 1960
             
             const age = d3.csv("/narrativevisualization/data/age_dep_old.csv", function(data) {
@@ -22,7 +22,8 @@
             svg.append("g").call(d3.axisLeft(y));
             svg.append("g").attr("transform","translate(0,"+(height-spacing) +")").call(d3.axisBottom(x));
             
-            svg.attr("class", "center-screen")
+            svg.attr("class", "center-screen");
+
         </script>
     </body>
 </html>

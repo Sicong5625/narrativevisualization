@@ -3,7 +3,7 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>   
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
-    <body>
+    <body onload="load1(); load2(); load3();">
         <div>
             <hr>
                 <h1>
@@ -22,7 +22,7 @@
                 </ul>
             <hr>
         </div>
-        <a href="#two" class="back">Next</a>
+
         <h2 id="one">Looking for a car that performs better in Highways or Cities?</h2>
         <p>See performance of major car brands in cities and highways by clicking on the buttons</p>
         <div>
@@ -34,6 +34,15 @@
 
             <line x1="0" y1="700" x2="900" y2="700" stroke="black" stroke-dasharray="4" />
         </svg>
+
+
+
+
+
+
+
+
+
         <script>
             var scene1 = d3.select('#scene1')
             var scene2 = d3.select('#scene2')
@@ -59,8 +68,92 @@
                 .attr('y', 1050)
                 .attr('text-anchor', 'middle')
                 .text('Car Brand')
+            scene2.append('text')
+                .attr('x', 500)
+                .attr('y', 390)
+                .attr('text-anchor', 'middle')
+                .text('Average Highway MPG')
 
-            
+            scene3.append('text')
+                .attr('x', -500)
+                .attr('y', 15)
+                .attr('transform', 'rotate(-90)')
+                .attr('text-anchor', 'middle')
+                .text('Number of Cylinders')
+
+            scene3.append('text')
+                .attr('x', 500)
+                .attr('y', 1150)
+                .attr('text-anchor', 'middle')
+                .text('Fuel Type')
+            var bar_tooltip = d3.select("body")
+                .append("div")
+                .append("div")
+                .style("opacity", 0)
+                .attr("class", "tooltip")
+                .style("background-color", "black")
+                .style("border-radius", "5px")
+                .style("padding", "15px")
+                .style("color", "white")
+            async function load1() {
+                    var makeScale = d3.scaleBand()
+                        .range([0, width])
+                        .domain(data_given.map(function (d) { return d.Make; }))
+
+                    var makeAxis = d3.axisBottom()
+                        .scale(makeScale)
+                        .ticks(5);
+
+                    scene1.append("g")
+                        .attr("transform", "translate(50,950)")
+                        .attr("class", "axis")
+                        .call(makeAxis)
+                        .selectAll("text")
+                        .attr("transform", "translate(-10,0)rotate(-30)")
+                        .style("text-anchor", "end");
+
+                    scene1.selectAll("mybar")
+                        .data(data_given)
+                        .enter()
+                        .append("rect")
+                        .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })
+                        .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+                        .attr("width", makeScale.bandwidth() - 10)
+                        .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+                        .attr("fill", "#5E4FA2").on("mouseover", function (d, i) {
+                            bar_tooltip.transition()
+                                .duration(200)
+                                .style("opacity", .9);
+                            bar_tooltip.html(makes[i])
+                                .style("left", (d3.event.pageX) + "px")
+                                .style("top", (d3.event.pageY - 28) + "px");
+                        })
+                        .on("mouseout", function (d) {
+                            bar_tooltip.transition()
+                                .duration(500)
+                                .style("opacity", 0);
+                        });
+                })
+            }
+
+            // This function is called by the buttons on top of the plot
+            function change(setting) {
+                if (setting === "AverageHighwayMPG") {
+                    scene1.selectAll("rect")
+                        .transition()
+                        .duration(2000)
+                        .attr("fill", "#5E4FA2")
+                        .attr("y", function (d, i) { return y(highway_mpgs[i]) + 10; })
+                        .attr("height", function (d, i) { return height - y(highway_mpgs[i]); })
+                } else {
+                    scene1.selectAll("rect")
+                        .transition()
+                        .duration(2000)
+                        .attr("fill", "#66C2A5")
+                        .attr("y", function (d, i) { return y(city_mpgs[i]) + 10; })
+                        .attr("height", function (d, i) { return height - y(city_mpgs[i]); })
+                }
+            }
             
         </script>
     </body>

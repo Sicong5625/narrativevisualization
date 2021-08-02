@@ -1,8 +1,6 @@
 # World Population, Birth rate, and the Aging Population    
 <script src="https://d3js.org/d3.v5.min.js"></script>   
 <style> path {stroke: black;}</style>   
-  
-
 <body>
     <script>
         var width = 600, height = 500, spacing=100;
@@ -25,8 +23,8 @@
 
         var y=d3.scaleLinear().domain([0,50]).range([height-spacing,0]);
         var x=d3.scaleLinear().domain([1960,2020]).range([0,width-spacing]);
-        svg.append("g").call(d3.axisLeft(y));
-        svg.append("g").call(d3.axisBottom(x));
+        svg.append("g").").attr("transform","translate("+spacing+","+spacing+")").call(d3.axisLeft(y));
+        svg.append("g").attr("transform","translate("+spacing+","+(200+spacing) +")")..call(d3.axisBottom(x));
         
     </script>
 </body>

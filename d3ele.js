@@ -81,7 +81,7 @@ var bar_tooltip = d3.select("body")
                 .attr("transform", "translate(-10,0)rotate(-30)")
                 .style("text-anchor", "end");
 
-            scene1.selectAll("mybar")
+            scene1.selectAll("rect")
                 .data(d)
                 .enter()
                 .append("rect")

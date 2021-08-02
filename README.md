@@ -25,8 +25,8 @@
 
         var y=d3.scaleLinear().domain([0,50]).range([height-spacing,0]);
         var x=d3.scaleLinear().domain([1960,2020]).range([0,width-spacing]);
-        svg.append("g").call(y);
-        svg.append("g").call(x);
-
+        svg.append("g").call(d3.axisLeft(y));
+        svg.append("g").call(d3.axisBottom(x));
+        var years = Array.from(new Array(61), (x, i) => i + *lowerBound*);
     </script>
 </body>

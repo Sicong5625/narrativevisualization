@@ -212,7 +212,7 @@ async function load2() {
                 tooltip.transition().duration(200)
                     .style('opacity', 0.9)
                     .style('left', (event.x ) + 'px')
-                    .style('top', (event.y) +height*2.5+420+'px')
+                    .style('top', (event.y) +height*2+420+'px')
                 tooltip.html(d.Make+"<br>"+d.AverageCityMPG)
             })
             .on("mouseout", function (d) {

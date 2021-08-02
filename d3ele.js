@@ -176,15 +176,6 @@ scene2.append('text')
     .style("alignment-baseline", "middle")
 
 
-var highlight = function (d) {
-    scene2.selectAll(".datapt").style("opacity", .05)
-    scene2.selectAll(".a" + d).style("opacity", 1)
-}
-
-var noHighlight = function (d) {
-    d3.selectAll(".datapt").style("opacity", 1)
-}
-
 async function load2() {
     d3.csv("https://flunky.github.io/cars2017.csv").then(function (d) {
         scene2.append("g").selectAll("circle")
@@ -200,7 +191,7 @@ async function load2() {
                 tooltip.transition().duration(200)
                     .style('opacity', 0.9)
                     .style('left', (event.x ) + 'px')
-                    .style('top', (event.y) +height+300+ 'px')
+                    .style('top', (event.y) +height*2+ 'px')
                 tooltip.html(d.Make+"<br>"+d.AverageHighwayMPG)
             })
             .on("mouseout", function (d) {

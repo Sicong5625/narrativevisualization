@@ -200,25 +200,25 @@ async function load2() {
                     .style("opacity", 0);
             });
             scene2.append("g").selectAll("circle")
-            .data(d)
-            .enter()
-            .append("circle")
-            .attr("class", function (d) { return "datapt " + "a" + d.EngineCylinders })
-            .attr("cx", function (d) { return d.AverageCityMPG * 20  +100})
-            .attr("cy", function (d) { return 500 })
-            .attr("r", "7")
-            .attr("fill", function (d) { return myColor(d.EngineCylinders); })
-            .on("mouseover", function (event,d) {
-                tooltip.transition().duration(200)
-                    .style('opacity', 0.9)
-                    .style('left', (event.x ) + 'px')
-                    .style('top', (event.y) +height*2+420+'px')
-                tooltip.html(d.Make+"<br>"+d.AverageCityMPG)
+                .data(d)
+                .enter()
+                .append("circle")
+                .attr("class", function (d) { return "datapt " + "a" + d.EngineCylinders })
+                .attr("cx", function (d) { return d.AverageCityMPG * 20  +100})
+                .attr("cy", function (d) { return 500 })
+                .attr("r", "7")
+                .attr("fill", function (d) { return myColor(d.EngineCylinders); })
+                .on("mouseover", function (event,d) {
+                    tooltip.transition().duration(200)
+                        .style('opacity', 0.9)
+                        .style('left', (event.x ) + 'px')
+                        .style('top', (event.y) +height*2+220+'px')
+                    tooltip.html(d.Make+"<br>"+d.AverageCityMPG)
             })
-            .on("mouseout", function (d) {
-                tooltip.transition()
-                    .duration(500)
-                    .style("opacity", 0);
+                .on("mouseout", function (d) {
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
             });
     })
 }

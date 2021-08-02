@@ -1,4 +1,4 @@
-# Fuel Efficiency
+
 <html>
     <script src="https://d3js.org/d3.v6.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>

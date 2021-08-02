@@ -7,7 +7,7 @@
     <script>
         var width = 600, height = 500, spacing=120;
         var lowerBound = 1960
-        var years = Array.from(new Array(61), (x, i) => i + *lowerBound*);
+        
         const age = d3.csv("/data/age_dep_old.csv", function(data) {
             for (var i = 0; i < data.length; i++) {
                 console.log(data);

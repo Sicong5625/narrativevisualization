@@ -83,7 +83,7 @@ var scene1 = d3.select('#scene1')
                     .style("text-anchor", "end");
 
                 scene1.selectAll("mybar")
-                    .data(data_given)
+                    .data(data)
                     .enter()
                     .append("rect")
                     .attr("x", function (d, i) { return margin.left + makeScale(makes[i]); })

@@ -1,7 +1,6 @@
 
 <html>
     <script src="https://d3js.org/d3.v6.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
     <style type="text/css">
 
@@ -101,3 +100,5 @@
 
     </body>
 </html>
+
+the two contributors in the original repository are accounts linked to my school email and gmail for conveniences.

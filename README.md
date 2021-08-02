@@ -1,8 +1,8 @@
 # World Population, Birth rate, and the Aging Population    
 <script src="https://d3js.org/d3.v5.min.js"></script>   
-<style> path {stroke: black;}</style>   
 <body>
-    <script>
+    <style> path {stroke: black;}</style>   
+    <script, class="center-screen">
         var width = 600, height = 500, spacing=120;
         var lowerBound = 1960
         
@@ -12,11 +12,11 @@
             }
         });
 
-        const pop = d3.csv("/narrativevisualization/data/total.csv", function(data) {
+        <!-- const pop = d3.csv("/narrativevisualization/data/total.csv", function(data) {
             for (var i = 0; i < data.length; i++) {
                 console.log(data);
             }
-        });
+        }); -->
 
         var svg = d3.select("body").append("svg").attr("width", width).attr("height", height)
             .append("g").attr("transform", "translate("+ spacing/2 +", "+ spacing/2 +")");

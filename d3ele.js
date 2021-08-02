@@ -163,7 +163,7 @@ scene2.append('text')
     .attr('x', 500)
     .attr('y', 590)
     .attr('text-anchor', 'middle')
-    .text('Average Highway MPG')
+    .text('Average City MPG')
 scene2.append('text')
     .attr("x", 330)
     .attr("y", 215)
@@ -223,4 +223,109 @@ async function load2() {
     })
 }
 
+var keys_fuel = ["Diesel", "Gasoline", "Electricity"]
+var colorkeys = d3.scaleOrdinal().domain(keys_fuel).range(["red", "#21908dff", "#fde725ff"])
+scene3.selectAll("legend")
+    .data(keys_fuel)
+    .enter()
+    .append("circle")
+    .attr("cx", 50)
+    .attr("cy", function (d, i) { return 50+ i*30  })
+    .attr("width", size)
+    .attr("height", size)
+    .attr("r", 10)
+    .attr("stroke", "black")
+    .style("fill", function (d) { return colorkeys(d) })
+scene3.selectAll("labels")
+    .data(keys_fuel)
+    .enter()
+    .append("text")
+    .attr("x", 50 + size * 1.2)
+    .attr("y", function (d, i) { return 50+ i*30 })
+    .style("fill", function (d) { return "black" })
+    .text(function (d) { return d })
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle")
 
+var xaxis = d3.scaleLinear()
+    .domain([10, 120]).range([0,width-spacing]);
+var yaxis = d3.scaleLinear()
+    .domain([2,12]).range([height-4*spacing,0]);
+scene3.append("g")
+    .attr("transform", "translate(150," + (width-350) + ")")
+    .call(d3.axisBottom(xaxis));
+scene3.append("g")
+    .attr("transform","translate(150,"+(height-900) +")")
+    .call(d3.axisLeft(yaxis));
+
+scene3.append('text')
+    .attr('x', -250)
+    .attr('y', 125)
+    .attr('transform', 'rotate(-90)')
+    .attr('text-anchor', 'middle')
+    .text('Cylinder Number')
+
+scene3.append('text')
+    .attr('x', 500)
+    .attr('y', 550)
+    .attr('text-anchor', 'middle')
+    .text('Highway MPG')
+
+const highlight = function(event,d){
+
+    selected_specie = d.Fuel
+
+    d3.selectAll(".dot")
+        .transition()
+        .duration(200)
+        .style("fill", "lightgrey")
+        .style("opacity", 0.4)
+        .attr("r", 3)
+
+    d3.selectAll("." + selected_specie)
+        .transition()
+        .duration(200)
+        .style("fill", colorkeys(selected_specie))
+        .style("opacity", 1)
+        .attr("r", 7)
+    tooltip.transition().duration(200)
+        .style('opacity', 0.9)
+        .style('left', (event.x ) + 'px')
+        .style('top', '2800px')
+    tooltip.html(d.Make+"<br>"
+        +"MPG Highway: "+d.AverageHighwayMPG
+        +"<br>"+"Number of engin cylinders: "+d.EngineCylinders)
+}
+
+    // Highlight the specie that is hovered
+const doNotHighlight = function(event,d){
+    d3.selectAll(".dot")
+        .transition()
+        .duration(200)
+        .style("fill", d => colorkeys(d.Fuel))
+        .style("opacity", 0.4)
+        .attr("r", 4 )
+    tooltip.transition()
+        .duration(500)
+        .style("opacity", 0);
+}
+async function load3(){
+    d3.csv("https://flunky.github.io/cars2017.csv").then(function (data) {
+        scene3.append('g')
+            .selectAll("dot")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("class", function (d) { return "dot " + d.Fuel } )
+            .attr("cx", function (d) { return 150+((width-spacing)/110)*(d.AverageHighwayMPG-10); } )
+            .attr("cy", function (d) { return height-4*spacing-150-((height-4*spacing)/10)*(d.EngineCylinders-2); } )
+            .attr("r", 4)
+            .style("opacity", 0.4)
+            .style("fill", function (d) { return colorkeys(d.Fuel) } )
+            .on("mouseover", highlight)
+            .on("mouseleave", doNotHighlight )
+
+    })
+        
+
+}

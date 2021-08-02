@@ -5,7 +5,7 @@
     <body>
         <div style="text-align:center;"></div>
         <script>
-            var width = 1200, height = 500, spacing=120;
+            var width = 800, height = 500, spacing=120;
             var lowerBound = 1960
             
             const age = d3.csv("/narrativevisualization/data/age_dep_old.csv", function(data) {

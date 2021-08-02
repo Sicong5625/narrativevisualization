@@ -1,5 +1,6 @@
 var scene1 = d3.select('#scene1')
 var scene2 = d3.select('#scene2')
+var scene3 = d3.select('#scene3')
 var width = 950, height = 950, spacing=120;
 var margin = { top: 10, right: 100, bottom: 50, left: 50 },
     width = 1000 - margin.left - margin.right,
@@ -39,15 +40,11 @@ scene1.append('text')
     .attr('y', 1050)
     .attr('text-anchor', 'middle')
     .text('Car Brand')
-scene2.append('text')
-    .attr('x', 500)
-    .attr('y', 390)
-    .attr('text-anchor', 'middle')
-    .text('Average Highway MPG')
+
 
 var tooltip = d3.select("body").append('div')
     .attr('class', 'tooltip')
-    .style('opacity', 0.7);
+    .style('opacity', 0);
     
 var filling = "#5E4FA2"
 
@@ -137,9 +134,47 @@ scene2.selectAll("legend")
     .attr("height", size)
     .attr("stroke", "black")
     .style("fill", function (d) { return myColor(d) })
-    .on("mouseover", function (d) { highlight(d) })
-    .on("mouseleave", function (d) { noHighlight(d) })
-    
+
+scene2.selectAll("labels")
+    .data(keys_cyls)
+    .enter()
+    .append("text")
+    .attr("x", 100 + size * 1.2)
+    .attr("y", function (d, i) { return 200 + i * (size + 5) + (size / 2) })
+    .style("fill", function (d) { return "black" })
+    .text(function (d) { return d })
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle")
+
+
+// Annotation
+scene2.append('rect')
+    .attr("x", 300)
+    .attr("y", 200)
+    .attr("width", 500)
+    .attr("height", 30)
+    .style("fill", 'lightgray')
+scene2.append('text')
+    .attr('x', 500)
+    .attr('y', 390)
+    .attr('text-anchor', 'middle')
+    .text('Average Highway MPG')
+scene2.append('text')
+    .attr('x', 500)
+    .attr('y', 590)
+    .attr('text-anchor', 'middle')
+    .text('Average Highway MPG')
+scene2.append('text')
+    .attr("x", 330)
+    .attr("y", 215)
+    .attr("width", 60)
+    .attr("height", 20)
+    .style("fill", 'black')
+    .attr("font-size","15px")
+    .text("Fewer engineer cylinders are largely correlated with better mileage.")
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle")
+
 
 var highlight = function (d) {
     scene2.selectAll(".datapt").style("opacity", .05)
@@ -152,56 +187,42 @@ var noHighlight = function (d) {
 
 async function load2() {
     d3.csv("https://flunky.github.io/cars2017.csv").then(function (d) {
-    //Legend
-    
-    scene2.selectAll("labels")
-        .data(keys_cyls)
-        .enter()
-        .append("text")
-        .attr("x", 100 + size * 1.2)
-        .attr("y", function (d, i) { return 200 + i * (size + 5) + (size / 2) })
-        .style("fill", function (d) { return "black" })
-        .text(function (d) { return d })
-        .attr("text-anchor", "left")
-        .style("alignment-baseline", "middle")
-        .on("mouseover", highlight)
-        .on("mouseleave", noHighlight)
-
-    // Annotation
-    scene2.append('rect')
-        .attr("x", 300)
-        .attr("y", 200)
-        .attr("width", 500)
-        .attr("height", 30)
-        .style("fill", 'lightgray')
-
-    scene2.append('text')
-        .attr("x", 310)
-        .attr("y", 220)
-        .attr("width", 60)
-        .attr("height", 20)
-        .style("fill", 'black')
-        .text("Fewer engineer cylinders are largely correlated with better mileage.")
-        .attr("text-anchor", "left")
-        .style("alignment-baseline", "middle")
-
-        scene2.selectAll("scene2")
-            .append("g")
+        scene2.append("g").selectAll("circle")
             .data(d)
             .enter()
             .append("circle")
             .attr("class", function (d) { return "datapt " + "a" + d.EngineCylinders })
-            .attr("cx", function (d) { return d.AverageHighwayMPG * 20 })
+            .attr("cx", function (d) { return d.AverageHighwayMPG * 20})
             .attr("cy", function (d) { return 300 })
             .attr("r", "7")
             .attr("fill", function (d) { return myColor(d.EngineCylinders); })
-            .on("mouseover", function (d) {
+            .on("mouseover", function (event,d) {
+                tooltip.transition().duration(200)
+                    .style('opacity', 0.9)
+                    .style('left', (event.x ) + 'px')
+                    .style('top', (event.y) +height+300+ 'px')
+                tooltip.html(d.Make+"<br>"+d.AverageHighwayMPG)
+            })
+            .on("mouseout", function (d) {
                 tooltip.transition()
-                    .duration(200)
-                    .style("opacity", .9);
-                tooltip.html(d.Make)
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
+                    .duration(500)
+                    .style("opacity", 0);
+            });
+            scene2.append("g").selectAll("circle")
+            .data(d)
+            .enter()
+            .append("circle")
+            .attr("class", function (d) { return "datapt " + "a" + d.EngineCylinders })
+            .attr("cx", function (d) { return d.AverageCityMPG * 20  +100})
+            .attr("cy", function (d) { return 500 })
+            .attr("r", "7")
+            .attr("fill", function (d) { return myColor(d.EngineCylinders); })
+            .on("mouseover", function (event,d) {
+                tooltip.transition().duration(200)
+                    .style('opacity', 0.9)
+                    .style('left', (event.x ) + 'px')
+                    .style('top', (event.y) +height+400+ 'px')
+                tooltip.html(d.Make+"<br>"+d.AverageCityMPG)
             })
             .on("mouseout", function (d) {
                 tooltip.transition()

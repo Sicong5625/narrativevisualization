@@ -3,7 +3,7 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>   
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
-    <body onload="load1(); load2(); load3();">
+    <body onload="load1(); load2();">
         <div>
             <hr>
                 <h1>
@@ -51,27 +51,6 @@
 
         <!-- Script -->
         <script src="d3ele.js"></script>
-
-        <ul>
-            <li>
-                <a href="https://flunky.github.io/cars2017.csv">Data Source</a>
-            </li>
-            <li>
-                <a href="https://bl.ocks.org/d3noob/4e4485d94aebf63ae8059258c40f2609">Tooltips</a>
-            </li>
-            <li>
-                <a href="https://www.d3-graph-gallery.com/graph/bubble_tooltip.html">Tooltips 2</a>
-            </li>
-            <li>
-                <a href="https://observablehq.com/@d3/d3-scaleordinal">ScaleOrdinal</a>
-            </li>
-            <li>
-                <a href="https://www.d3-graph-gallery.com/graph/bubble_template.html">Opacity change on hover</a>
-            </li>
-        </ul>
-
-
-
 
     </body>
 </html>

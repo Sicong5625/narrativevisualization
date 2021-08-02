@@ -2,7 +2,7 @@
 <script src="https://d3js.org/d3.v5.min.js"></script>   
 <body>
     <style> path {stroke: black;}</style>   
-    <script, class="center-screen">
+    <script>
         var width = 600, height = 500, spacing=120;
         var lowerBound = 1960
         
@@ -25,6 +25,6 @@
         var x=d3.scaleLinear().domain([1960,2020]).range([0,width-spacing]);
         svg.append("g").call(d3.axisLeft(y));
         svg.append("g").call(d3.axisBottom(x));
-        
+        svg.attr("class", "center-screen")
     </script>
 </body>

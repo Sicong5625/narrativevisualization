@@ -102,3 +102,8 @@
 </html>
 
 the two contributors in the original repository are accounts linked to my school email and gmail for conveniences.
+data source: https://flunky.github.io/cars2017.csv
+references:
+https://www.d3-graph-gallery.com/graph/scatter_grouped_highlight.html
+https://www.d3-graph-gallery.com/graph/interactivity_tooltip.html
+https://www.d3-graph-gallery.com/graph/scatter_tooltip.html

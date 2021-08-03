@@ -191,7 +191,7 @@ async function load2() {
                 tooltip.transition().duration(200)
                     .style('opacity', 0.9)
                     .style('left', (event.x ) + 'px')
-                    .style('top', (event.y) +height+ 'px')
+                    .style('top', '1500px')
                 tooltip.html(d.Make+"<br>"+d.AverageHighwayMPG)
             })
             .on("mouseout", function (d) {

@@ -311,7 +311,7 @@ const doNotHighlight = function(event,d){
 }
 async function load3(){
     d3.csv("https://flunky.github.io/cars2017.csv").then(function (data) {
-        scene3.append('g')
+        scene3
             .selectAll("dot")
             .data(data)
             .enter()

@@ -191,7 +191,7 @@ async function load2() {
                 tooltip.transition().duration(200)
                     .style('opacity', 0.9)
                     .style('left', (event.x ) + 'px')
-                    .style('top', (event.y) +height*2+ 'px')
+                    .style('top', (event.y) +height+ 'px')
                 tooltip.html(d.Make+"<br>"+d.AverageHighwayMPG)
             })
             .on("mouseout", function (d) {
@@ -212,7 +212,7 @@ async function load2() {
                     tooltip.transition().duration(200)
                         .style('opacity', 0.9)
                         .style('left', (event.x ) + 'px')
-                        .style('top', '2500px')
+                        .style('top', '2000px')
                     tooltip.html(d.Make+"<br>"+d.AverageCityMPG)
             })
                 .on("mouseout", function (d) {
